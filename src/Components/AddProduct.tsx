@@ -3,27 +3,21 @@ import { useForm } from "react-hook-form";
 import { IProduct } from "../interface/Product";
 import axios from "axios";
 
-const AddProduct = () => {
-  type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
-
+type Props = {
+  title: string;
+  products: IProduct[];
+  setProducts: (products: IProduct[]) => void;
+};
+type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
+const AddProduct = ({ title, products, setProducts }: Props) => {
   const {
     register,
     handleSubmit, // là một hàm để xử lý sự kiện gửi form.
     reset,
   } = useForm<formType>({});
 
-  const [products, setProducts] = useState<IProduct[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get("http://localhost:3000/products");
-      // console.log(data);
-      setProducts(data);
-    })();
-  }, []);
-
   //ADD
-  const onSubmit = async (formData: any) => {
+  const onSubmitadd = async (formData: any) => {
     // console.log(data);
     try {
       const { data } = await axios.post(
@@ -39,7 +33,7 @@ const AddProduct = () => {
 
   return (
     <div className="div1">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitadd)}>
         <div className="form-group  ">
           <input
             className="form-control input"
