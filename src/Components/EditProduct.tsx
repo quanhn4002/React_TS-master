@@ -8,6 +8,7 @@ type Props = {
   setProducts: (products: IProduct[]) => void;
   products: IProduct[];
   setFlag: (flag: number | string) => void;
+  //
 };
 
 type formType = Pick<IProduct, "title" | "price" | "image" | "category">;

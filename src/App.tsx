@@ -57,7 +57,6 @@ function App() {
                 product.id === flag ? (
                   <tr key={product.id}>
                     <td colSpan={6}>
-                      ///
                       <EditProduct
                         product={product}
                         setProducts={setProducts}
