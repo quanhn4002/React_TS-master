@@ -40,28 +40,28 @@
     {
       "title": "Giày này update",
       "price": 800000,
-      "image": "https://i.pinimg.com/474x/d4/4b/fa/d44bfa9162e582fc178ff64a27d08732.jpg",
+      "image": "https://picsum.photos/seed/picsum/200/300",
       "category": "Giày dép",
       "id": 3
     },
     {
-      "id": 6,
-      "title": "Máy ảnh DSLR",
+      "title": "Tranhhh",
       "price": 3500000,
-      "image": "https://i.pinimg.com/474x/dd/19/96/dd19963873e98f76e9d2e3afe2b33cbf.jpg",
-      "category": "Điện tử"
+      "image": "https://picsum.photos/seed/picsum/200/300",
+      "category": "Điện tử",
+      "id": 6
     },
     {
-      "id": 8,
       "title": "Chó",
       "price": 800000,
       "image": "https://i.pinimg.com/474x/f0/a6/ec/f0a6ec3d1b8579ad9f4d7948697ed457.jpg",
-      "category": " Thú cưng"
+      "category": " Chó",
+      "id": 8
     },
     {
       "title": "adadadda",
       "price": "add",
-      "image": "https://i.pinimg.com/474x/b2/98/37/b298372dff472028a6918df21a3a634b.jpg",
+      "image": "https://picsum.photos/seed/picsum/200/300",
       "category": "Thời trang",
       "id": 9
     }

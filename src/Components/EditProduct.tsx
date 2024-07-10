@@ -41,42 +41,40 @@ const EditProduct = ({ product, setProducts, products, setFlag }: Props) => {
   };
 
   return (
-    <>
-      <div className="bg">
-        <form onSubmit={handleSubmit(onSubmitUpdate)} className="form">
-          <div className="form-group">
-            <input
-              className="form-control input"
-              type="text"
-              {...register("title")}
-              placeholder="Title"
-            />
-            <input
-              className="form-control input"
-              type="text"
-              {...register("price")}
-              placeholder="price"
-            />
-            <input
-              className="form-control input"
-              type="text"
-              {...register("image")}
-              placeholder="image"
-            />
-            <input
-              className="form-control input"
-              type="text"
-              {...register("category")}
-              placeholder="category"
-            />
-            <button type="submit">Update</button>
-            <button type="button" onClick={() => setFlag(0)}>
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
-    </>
+    <div className="bg">
+      <form onSubmit={handleSubmit(onSubmitUpdate)} className="form">
+        <div className="form-group">
+          <input
+            className="form-control input"
+            type="text"
+            {...register("title")}
+            placeholder="Title"
+          />
+          <input
+            className="form-control input"
+            type="text"
+            {...register("price")}
+            placeholder="price"
+          />
+          <input
+            className="form-control input"
+            type="text"
+            {...register("image")}
+            placeholder="image"
+          />
+          <input
+            className="form-control input"
+            type="text"
+            {...register("category")}
+            placeholder="category"
+          />
+          <button type="submit">Update</button>
+          <button type="button" onClick={() => setFlag(0)}>
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

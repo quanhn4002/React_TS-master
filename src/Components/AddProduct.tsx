@@ -34,6 +34,9 @@ const AddProduct = ({ title, products, setProducts }: Props) => {
   return (
     <div className="div1">
       <form onSubmit={handleSubmit(onSubmitadd)}>
+        <h2 className="flex items-center justify-center  text-2xl">
+          Thêm Sản Phẩm
+        </h2>
         <div className="form-group  ">
           <input
             className="form-control input"
