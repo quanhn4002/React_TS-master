@@ -4,18 +4,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AddProduct from "./Components/AddProduct";
 import EditProduct from "./Components/EditProduct";
 import { IProduct } from "./interface/Product";
+import { useForm } from "react-hook-form";
 
 function App() {
+  type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
   const [products, setProducts] = useState<IProduct[]>([]);
+  const { register, handleSubmit, reset } = useForm<formType>({});
   const [flag, setFlag] = useState<string | number>(0); //
-
+  //hien thi
   useEffect(() => {
     (async () => {
       const { data } = await axios.get("http://localhost:3000/products");
       setProducts(data);
     })();
   }, []);
-
+  //delete
   const onDelete = async (id: number) => {
     try {
       if (confirm("Are you sure you want to delete")) {
@@ -28,17 +31,57 @@ function App() {
     }
   };
 
+  const onSubmitUpdate = async (formData: any) => {
+    // console.log(data);
+    try {
+      const { data } = await axios.put(
+        "http://localhost:3000/products/" + flag,
+        formData
+      );
+      //  console.log(data);
+      console.log(flag);
+      const newproduct = products.map((product: IProduct) => {
+        if (product.id == flag) {
+          product = data;
+        }
+        return product;
+      });
+      setProducts(newproduct);
+      setFlag(0);
+      alert("Cập nhật thành công");
+      // reset()
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const onEdit = (id: number | string) => {
     setFlag(id);
+    const product = products.filter((p: IProduct) => p.id === id);
+    reset({
+      title: product[0].title,
+      image: product[0].image,
+      price: product[0].price,
+      category: product[0].category,
+    });
+  };
+  // add
+
+  const onAddSP = async (dataproduct: formType) => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3000/products",
+        dataproduct
+      );
+      setProducts([...products, data]);
+      alert("Thêm mới thành công");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="content">
-      <AddProduct
-        title="thêm sản phẩm mới"
-        products={products}
-        setProducts={setProducts}
-      />
+      <AddProduct title="thêm sản phẩm mới" onAdd={onAddSP} />
       <div className="div2">
         <h2 className=" flex justify-center text-3xl mb-4">
           {" "}
@@ -62,8 +105,7 @@ function App() {
                   <td colSpan={6}>
                     <EditProduct
                       product={product}
-                      setProducts={setProducts}
-                      products={products}
+                      onUpdate={onSubmitUpdate}
                       setFlag={setFlag}
                     />
                   </td>

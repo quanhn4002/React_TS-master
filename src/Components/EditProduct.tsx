@@ -5,41 +5,23 @@ import axios from "axios";
 
 type Props = {
   product: IProduct;
-  setProducts: (products: IProduct[]) => void;
-  products: IProduct[];
-  setFlag: (flag: number | string) => void;
-  //
+  onUpdate: (data: any) => void;
+  setFlag: (id: string | number) => void;
 };
 
-type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
-
-const EditProduct = ({ product, setProducts, products, setFlag }: Props) => {
+const EditProduct = ({ product, onUpdate, setFlag }: Props) => {
+  type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
   const { register, handleSubmit, reset } = useForm<formType>({
     defaultValues: {
       title: product.title,
-      price: product.price,
       image: product.image,
+      price: product.price,
       category: product.category,
     },
   });
-
-  const onSubmitUpdate = async (formData: formType) => {
-    try {
-      const { data } = await axios.put(
-        `http://localhost:3000/products/${product.id}`,
-        formData
-      );
-      const newProducts = products.map((p: IProduct) =>
-        p.id === product.id ? data : p
-      );
-      setProducts(newProducts);
-      setFlag(0);
-      reset();
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmitUpdate = (product: formType) => {
+    onUpdate(product);
   };
-
   return (
     <div className="bg">
       <form onSubmit={handleSubmit(onSubmitUpdate)} className="form">
@@ -69,7 +51,11 @@ const EditProduct = ({ product, setProducts, products, setFlag }: Props) => {
             placeholder="category"
           />
           <button type="submit">Update</button>
-          <button type="button" onClick={() => setFlag(0)}>
+          <button
+            type="button"
+            className="btn btn-warning"
+            onClick={() => setFlag(0)}
+          >
             Cancel
           </button>
         </div>

@@ -38,16 +38,9 @@
   ],
   "products": [
     {
-      "title": "Giày này update",
-      "price": 800000,
+      "title": "Tranhhh update ne nè",
       "image": "https://picsum.photos/seed/picsum/200/300",
-      "category": "Giày dép",
-      "id": 3
-    },
-    {
-      "title": "Tranhhh",
       "price": 3500000,
-      "image": "https://picsum.photos/seed/picsum/200/300",
       "category": "Điện tử",
       "id": 6
     },
@@ -57,13 +50,6 @@
       "image": "https://i.pinimg.com/474x/f0/a6/ec/f0a6ec3d1b8579ad9f4d7948697ed457.jpg",
       "category": " Chó",
       "id": 8
-    },
-    {
-      "title": "adadadda",
-      "price": "add",
-      "image": "https://picsum.photos/seed/picsum/200/300",
-      "category": "Thời trang",
-      "id": 9
     }
   ]
 }
