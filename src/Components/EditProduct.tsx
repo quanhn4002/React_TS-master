@@ -10,8 +10,8 @@ type Props = {
 };
 
 const EditProduct = ({ product, onUpdate, setFlag }: Props) => {
-  type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
-  const { register, handleSubmit, reset } = useForm<formType>({
+  type formType = Pick<IProduct, "title" | "price" | "image" | "category">; /// chọn các thuộc tính của IProduct để sử dụng
+  const { register, handleSubmit } = useForm<formType>({
     defaultValues: {
       title: product.title,
       image: product.image,

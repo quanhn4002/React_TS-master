@@ -5,6 +5,13 @@ import AddProduct from "./Components/AddProduct";
 import EditProduct from "./Components/EditProduct";
 import { IProduct } from "./interface/Product";
 import { useForm } from "react-hook-form";
+import { Route, Routes } from "react-router-dom";
+import home from "./Components/home";
+import detail from "./Components/detail";
+import dashboard from "./Components/dashboard";
+import Products from "./Components/products";
+import Home from "./Components/home";
+import { GetAllProduct } from "./service/products";
 
 function App() {
   type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
@@ -14,7 +21,7 @@ function App() {
   //hien thi
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("http://localhost:3000/products");
+      const data = await GetAllProduct();
       setProducts(data);
     })();
   }, []);
@@ -80,66 +87,13 @@ function App() {
   };
 
   return (
-    <div className="content">
-      <AddProduct title="thêm sản phẩm mới" onAdd={onAddSP} />
-      <div className="div2">
-        <h2 className=" flex justify-center text-3xl mb-4">
-          {" "}
-          Danh sách sản phẩm
-        </h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>STT</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Image</th>
-              <th>Category</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product: IProduct, index) =>
-              product.id === flag ? (
-                <tr key={product.id}>
-                  <td colSpan={6}>
-                    <EditProduct
-                      product={product}
-                      onUpdate={onSubmitUpdate}
-                      setFlag={setFlag}
-                    />
-                  </td>
-                </tr>
-              ) : (
-                <tr key={product.id}>
-                  <td>{index + 1}</td>
-                  <td>{product.title}</td>
-                  <td>{product.price}</td>
-                  <td>
-                    <img width={100} src={product.image} alt="image" />
-                  </td>
-                  <td>{product.category}</td>
-                  <td>
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => onEdit(product.id)}
-                    >
-                      Sửa
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => onDelete(product.id)}
-                    >
-                      Xóa
-                    </button>
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home products={products} />} />
+      <Route path="detail" Component={detail} />
+      <Route path="dashboard" Component={dashboard}>
+        <Route path="product" Component={Products} />
+      </Route>
+    </Routes>
   );
 }
 

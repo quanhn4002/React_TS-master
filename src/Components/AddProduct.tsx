@@ -12,13 +12,13 @@ const AddProduct = ({ onAdd }: Props) => {
   const { register, handleSubmit, reset } = useForm<formType>();
   const onSubmitadd = async (formData: any) => {
     onAdd(formData);
-    reset();
+    reset(); //reset lại form sau khi thêm
   };
 
   return (
     <div className="div1">
       <form onSubmit={handleSubmit(onSubmitadd)}>
-        <h2 className="flex items-center justify-center  text-2xl">
+        <h2 className="flex items-center justify-center text-2xl">
           Thêm Sản Phẩm
         </h2>
         <div className="form-group  ">
