@@ -1,6 +1,7 @@
 import React from "react";
+
+import ProductItem from "./productItem";
 import { IProduct } from "../interface/Product";
-import Header from "./header";
 
 type Props = {
   products: IProduct[];
@@ -8,36 +9,14 @@ type Props = {
 
 const Home = ({ products }: Props) => {
   return (
-    <>
-      <Header />
-      <table>
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Ảnh</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá tiền</th>
-            <th>Thao tác</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product, index) => (
-            <tr key={product.id}>
-              <td>{index + 1}</td>
-              <td>
-                <img width={90} src={product.image} />
-              </td>
-              <td>{product.title}</td>
-              <td>{product.price}</td>
-              <td>
-                <button>Sửa</button>
-                <button>Xóa</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+    <div className="max-w-[1200px] mx-auto">
+      <h1 className="text-[36px] text-center">Trang chủ</h1>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+        {products.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
   );
 };
 

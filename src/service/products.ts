@@ -1,5 +1,6 @@
+import Products from "../Components/products";
 import instance from "../config/axios";
-import { IProduct } from "../interface/Product";
+import { formType, IProduct } from "../interface/Product";
 
 export const GetAllProduct = async () => {
   try {
@@ -10,24 +11,24 @@ export const GetAllProduct = async () => {
 
 export const GetProductById = async (id: string | number) => {
   try {
-    const { data } = await instance.get(`product/${id}`);
+    const { data } = await instance.get(`products/${id}`);
     return data;
   } catch {}
 };
 
-export const AddProduct = async (productData: IProduct) => {
+export const AddProduct = async (product: formType) => {
   try {
-    const { data } = await instance.post("products", productData);
+    const { data } = await instance.post("products", product);
     return data;
   } catch {}
 };
 
-export const EditProduct = async (
+export const UpdateProduct = async (
   productData: IProduct,
   id: string | number
 ) => {
   try {
-    const { data } = await instance.put(`product/${id}`, productData);
+    const { data } = await instance.put(`products/${id}`, productData);
     return data;
   } catch {}
 };

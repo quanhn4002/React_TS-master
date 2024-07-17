@@ -1,25 +1,33 @@
 import React from "react";
-import Home from "./home";
 import { Link } from "react-router-dom";
 
 type Props = {};
 
 const Header = (props: Props) => {
   return (
-    <div>
-      <header>
+    <header className="bg-slate-500">
+      <div className="max-w-[1200px] mx-auto">
         <nav>
-          <ul>
+          <ul className="flex gap-5">
             <li>
-              <Link to="/">Home</Link>
+              <Link className="py-4 block text-white" to={"/"}>
+                Trang chủ
+              </Link>
             </li>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link className="py-4 block text-white" to={"/products"}>
+                Sản phẩm
+              </Link>
+            </li>
+            <li>
+              <Link className="py-4 block text-white" to={"/dashboard/product"}>
+                Liên hệ
+              </Link>
             </li>
           </ul>
         </nav>
-      </header>
-    </div>
+      </div>
+    </header>
   );
 };
 

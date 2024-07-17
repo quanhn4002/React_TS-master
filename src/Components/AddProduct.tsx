@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IProduct } from "../interface/Product";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   title: string;
-  onAdd: (dataproduct: formType) => void;
+  onAdd: (data: formType) => void;
 };
 type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
 const AddProduct = ({ onAdd }: Props) => {
   const { register, handleSubmit, reset } = useForm<formType>();
-  const onSubmitadd = async (formData: any) => {
+  const navigate = useNavigate();
+  const onSubmitadd = async (formData: formType) => {
     onAdd(formData);
+    navigate("/products");
     reset(); //reset lại form sau khi thêm
   };
 

@@ -3,13 +3,13 @@ import { Outlet } from "react-router-dom";
 
 type Props = {};
 
-const dashboard = (props: Props) => {
+const Dashboard = (props: Props) => {
   return (
-    <>
-      HHihih
+    <div>
+      dashboard
       <Outlet />
-    </>
+    </div>
   );
 };
 
-export default dashboard;
+export default Dashboard;

@@ -1,31 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import { IProduct } from "../interface/Product";
-import axios from "axios";
+import { GetProductById } from "../service/products";
 
 type Props = {
-  product: IProduct;
-  onUpdate: (data: any) => void;
-  setFlag: (id: string | number) => void;
+  title: string;
+  onUpdate: (data: IProduct, id: number | string) => void;
 };
 
-const EditProduct = ({ product, onUpdate, setFlag }: Props) => {
-  type formType = Pick<IProduct, "title" | "price" | "image" | "category">; /// chọn các thuộc tính của IProduct để sử dụng
-  const { register, handleSubmit } = useForm<formType>({
-    defaultValues: {
-      title: product.title,
-      image: product.image,
-      price: product.price,
-      category: product.category,
-    },
-  });
-  const onSubmitUpdate = (product: formType) => {
-    onUpdate(product);
+const EditProduct = ({ title, onUpdate }: Props) => {
+  const { register, handleSubmit, reset } = useForm<IProduct>();
+  const navigate = useNavigate();
+  const param = useParams();
+  useEffect(() => {
+    (async () => {
+      const product = await GetProductById(param.id as string | number);
+      reset({
+        title: product.title,
+        image: product.image,
+        price: product.price,
+        category: product.category,
+      });
+    })();
+  }, []);
+  const onSubmitUpdate = async (product: IProduct) => {
+    await onUpdate(product, param.id as string | number);
+    navigate("/products");
   };
   return (
-    <div className="bg">
-      <form onSubmit={handleSubmit(onSubmitUpdate)} className="form">
-        <div className="form-group">
+    <div>
+      <form onSubmit={handleSubmit(onSubmitUpdate)}>
+        <div className="form-group  ">
           <input
             className="form-control input"
             type="text"
@@ -50,15 +57,8 @@ const EditProduct = ({ product, onUpdate, setFlag }: Props) => {
             {...register("category")}
             placeholder="category"
           />
-          <button type="submit">Update</button>
-          <button
-            type="button"
-            className="btn btn-warning"
-            onClick={() => setFlag(0)}
-          >
-            Cancel
-          </button>
         </div>
+        <button type="submit">Update</button>
       </form>
     </div>
   );

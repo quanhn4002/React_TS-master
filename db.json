@@ -38,17 +38,24 @@
   ],
   "products": [
     {
-      "title": "Tranhh",
+      "title": "Tranhh ne",
       "image": "https://picsum.photos/seed/picsum/200/300",
       "price": 3500000,
       "category": "Điện tử",
       "id": 6
     },
     {
-      "title": "Chó",
-      "price": 800000,
-      "image": "https://i.pinimg.com/474x/f0/a6/ec/f0a6ec3d1b8579ad9f4d7948697ed457.jpg",
-      "category": " Chó",
+      "title": "quan ao",
+      "price": "10023",
+      "image": "https://picsum.photos/seed/picsum/200/300",
+      "category": "qun ao",
+      "id": 7
+    },
+    {
+      "title": "đâ",
+      "price": "250000",
+      "image": "https://i.pinimg.com/474x/b2/98/37/b298372dff472028a6918df21a3a634b.jpg",
+      "category": "Thời trang",
       "id": 8
     }
   ]

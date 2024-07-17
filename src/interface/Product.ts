@@ -1,7 +1,8 @@
 export interface IProduct {
   id: number;
   title: string;
-  price: number;
   image: string;
+  price: number;
   category: string;
 }
+export type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
