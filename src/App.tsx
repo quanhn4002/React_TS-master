@@ -18,6 +18,7 @@ import ProductContext from "./context/ProductContext";
 import AddProductElement from "./Components/AddProduct";
 import ProductList from "./Components/Product-list";
 import Home from "./Components/home";
+import AppContext from "./context/AppContext";
 
 function App() {
   //c2
@@ -26,7 +27,9 @@ function App() {
       path: "",
       element: (
         <ProductContext>
-          <Client />
+          <AppContext>
+            <Client />
+          </AppContext>
         </ProductContext>
       ),
       children: [
