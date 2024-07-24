@@ -1,22 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { IProduct } from "../interface/Product";
 import { GetProductById } from "../service/products";
+import { productCT } from "../context/ProductContext";
 
-type Props = {
-  title: string;
-  onUpdate: (data: IProduct, id: number | string) => void;
-};
-
-const EditProduct = ({ title, onUpdate }: Props) => {
+const EditProduct = () => {
+  const { onSubmitUpdate } = useContext(productCT);
   const { register, handleSubmit, reset } = useForm<IProduct>();
   const navigate = useNavigate();
-  const param = useParams();
+  const { id } = useParams();
   useEffect(() => {
     (async () => {
-      const product = await GetProductById(param.id as string | number);
+      const product = await GetProductById(id as string | number);
       reset({
         title: product.title,
         image: product.image,
@@ -25,13 +22,14 @@ const EditProduct = ({ title, onUpdate }: Props) => {
       });
     })();
   }, []);
-  const onSubmitUpdate = async (product: IProduct) => {
-    await onUpdate(product, param.id as string | number);
+
+  const onSubmit = async (product: IProduct) => {
+    await onSubmitUpdate(product, id as string | number);
     navigate("/products");
   };
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmitUpdate)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group  ">
           <input
             className="form-control input"

@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Link } from "react-router-dom";
 import { IProduct } from "../interface/Product";
+import { productCT } from "../context/ProductContext";
 
-type Props = {
-  products: IProduct[];
-  onDelete: (id: number | string) => void;
-};
-
-const ProductList = ({ products, onDelete }: Props) => {
+const ProductList = () => {
+  const { products, onDelete } = useContext(productCT);
   return (
     <>
       <h1>Danh sách sản phẩm</h1>
+      <Link to="/product/add">Thêm sản phẩm</Link>
       <table>
         <thead>
           <tr>
@@ -23,7 +21,7 @@ const ProductList = ({ products, onDelete }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product, index) => (
+          {products.map((product: IProduct, index: number) => (
             <tr key={product.id}>
               <td>{index + 1}</td>
               <td>

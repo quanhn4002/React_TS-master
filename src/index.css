@@ -31,3 +31,6 @@ button {
 .div2 {
   width: 70%;
 }
+.a.active {
+  color: red;
+}

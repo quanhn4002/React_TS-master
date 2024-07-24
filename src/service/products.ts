@@ -15,12 +15,9 @@ export const GetProductById = async (id: string | number) => {
     return data;
   } catch {}
 };
-
-export const AddProduct = async (product: formType) => {
-  try {
-    const { data } = await instance.post("products", product);
-    return data;
-  } catch {}
+export const addAllProduct = async (product: IProduct) => {
+  const { data } = await instance.post("products", product);
+  return data;
 };
 
 export const UpdateProduct = async (
@@ -35,7 +32,7 @@ export const UpdateProduct = async (
 
 export const DeleteProduct = async (id: string | number) => {
   try {
-    const { data } = await instance.delete(`product/${id}`);
+    const { data } = await instance.delete(`products/${id}`);
     return data;
   } catch {}
 };

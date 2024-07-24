@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IProduct } from "../interface/Product";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { productCT } from "../context/ProductContext";
 
-type Props = {
-  title: string;
-  onAdd: (data: formType) => void;
-};
-type formType = Pick<IProduct, "title" | "price" | "image" | "category">;
-const AddProduct = ({ onAdd }: Props) => {
-  const { register, handleSubmit, reset } = useForm<formType>();
+const AddProductElement = () => {
+  const { onAdd } = useContext(productCT);
+  const { register, handleSubmit, reset } = useForm<IProduct>();
   const navigate = useNavigate();
-  const onSubmitadd = async (formData: formType) => {
+  const onSubmitadd = async (formData: IProduct) => {
     onAdd(formData);
     navigate("/products");
     reset(); //reset lại form sau khi thêm
   };
 
   return (
-    <div className="div1">
+    <div>
       <form onSubmit={handleSubmit(onSubmitadd)}>
         <h2 className="flex items-center justify-center text-2xl">
           Thêm Sản Phẩm
@@ -56,4 +53,4 @@ const AddProduct = ({ onAdd }: Props) => {
   );
 };
 
-export default AddProduct;
+export default AddProductElement;

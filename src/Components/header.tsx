@@ -10,17 +10,20 @@ const Header = (props: Props) => {
         <nav>
           <ul className="flex gap-5">
             <li>
-              <Link className="py-4 block text-white" to={"/"}>
+              <Link className="a py-4 block text-white" to={"/"}>
                 Trang chủ
               </Link>
             </li>
             <li>
-              <Link className="py-4 block text-white" to={"/products"}>
+              <Link className="a py-4 block text-white" to={"/products"}>
                 Sản phẩm
               </Link>
             </li>
             <li>
-              <Link className="py-4 block text-white" to={"/dashboard/product"}>
+              <Link
+                className=" a py-4 block text-white"
+                to="/dashboard/product"
+              >
                 Liên hệ
               </Link>
             </li>
