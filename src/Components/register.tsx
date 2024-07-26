@@ -26,8 +26,18 @@ const Register = () => {
             placeholder="Password"
           />
           <div className="flex justify-center gap-6">
-            <button className="py-2 px-4 rounded border border-solid">
-              Đăng ký
+            <button
+              type="button"
+              onClick={() =>
+                dispatch({
+                  type: "message",
+                  value: true,
+                  text: "Đăng ký thành công",
+                })
+              }
+              className="py-2 px-4 rounded border border-solid"
+            >
+              Đăng kí
             </button>
             <button
               onClick={() => dispatch({ type: "register", value: false })}

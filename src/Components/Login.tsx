@@ -22,7 +22,7 @@ const Login = () => {
           />
           <div className="flex justify-center gap-6">
             <button className="py-2 px-4 rounded border border-solid">
-              Đăng ký
+              Đăng Nhập
             </button>
             <button
               onClick={() => dispatch({ type: "login", value: false })}

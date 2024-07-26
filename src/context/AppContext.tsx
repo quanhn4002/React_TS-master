@@ -1,3 +1,4 @@
+import { boolean } from "joi";
 import React, { useReducer } from "react";
 
 type Props = {
@@ -7,10 +8,12 @@ export const AppCT = React.createContext({} as any);
 type TAppSate = {
   isLogin: boolean;
   isRegister: boolean;
+  Message: { status: boolean; text?: string };
 };
 type TAppAction = {
   type: string;
   value: boolean;
+  text?: string;
 };
 
 const reducer = (state: TAppSate, action: TAppAction) => {
@@ -18,6 +21,8 @@ const reducer = (state: TAppSate, action: TAppAction) => {
     return { ...state, isLogin: action.value };
   } else if (action.type === "login") {
     return { ...state, isRegister: action.value };
+  } else if (action.type === "message") {
+    return { ...state, Message: { status: action.value, text: action.text } };
   } else {
     return state;
   }
@@ -28,6 +33,7 @@ const AppContext = ({ children }: Props) => {
   const [appState, dispatch] = useReducer(reducer, {
     isLogin: false,
     isRegister: false,
+    Message: { status: false, text: "" },
   });
   return (
     <AppCT.Provider value={{ appState, dispatch }}>{children}</AppCT.Provider>

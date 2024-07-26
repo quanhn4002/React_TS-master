@@ -50,6 +50,20 @@
       "image": "https://i.pinimg.com/474x/b2/98/37/b298372dff472028a6918df21a3a634b.jpg",
       "category": "add",
       "id": 8
+    },
+    {
+      "title": "fasaf",
+      "price": "250000",
+      "image": "https://picsum.photos/seed/picsum/200/300",
+      "category": "Thời trang",
+      "id": 9
+    },
+    {
+      "title": "ưdada",
+      "price": "3500000",
+      "image": "https://i.pinimg.com/474x/b2/98/37/b298372dff472028a6918df21a3a634b.jpg",
+      "category": "Thời trang",
+      "id": 10
     }
   ]
 }

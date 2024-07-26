@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AppCT } from "../context/AppContext";
 import Login from "./Login";
 import Register from "./register";
+import Message from "./message";
 
 type Props = {};
 
@@ -34,23 +35,23 @@ const Header = (props: Props) => {
             <li>
               <button
                 onClick={() => {
-                  dispatch({ type: "register", value: true });
-                  dispatch({ type: "login", value: false });
+                  dispatch({ type: "register", value: false });
+                  dispatch({ type: "login", value: true });
                 }}
-                className=" block text-white"
+                className="  py-4 block text-white"
               >
-                Đăng ký
+                Đăng kí
               </button>
             </li>
             <li>
               <button
                 onClick={() => {
-                  dispatch({ type: "login", value: true });
-                  dispatch({ type: "register", value: false });
+                  dispatch({ type: "login", value: false });
+                  dispatch({ type: "register", value: true });
                 }}
-                className=" block text-white"
+                className=" py-4 block text-white"
               >
-                Đăng nhập
+                Đăng Nhâp
               </button>
             </li>
           </ul>
@@ -58,6 +59,7 @@ const Header = (props: Props) => {
       </div>
       {appState.isLogin && <Login />}
       {appState.isRegister && <Register />}
+      {appState.Message.status && <Message />}
     </header>
   );
 };
